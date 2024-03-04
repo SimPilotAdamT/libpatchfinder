@@ -32,14 +32,19 @@ namespace tihmstar {
     
     class load_command_not_found : public OFexception {
     int _cmd;
+
     public:
         int cmd() const { return _cmd; };
-    
-        // Adjusted constructor to avoid passing arguments to ellipsis
+
+        // Adjusted constructor without passing arguments to ellipsis
         load_command_not_found(const char *commit_count_str, const char *commit_sha_str, int line, const char *filename, int cmd)
             : OFexception(commit_count_str, commit_sha_str, line, filename, "failed to find cmd"), _cmd(cmd) {}
-    };
 
+        // Optionally, if you need additional information in the error message, you can override what() method
+        const char* what() const noexcept override {
+            return "Load command not found";
+        }
+    };
     
     class symtab_not_found : public OFexception{
         using OFexception::OFexception;
