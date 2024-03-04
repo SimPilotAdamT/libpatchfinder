@@ -13,17 +13,11 @@ namespace tihmstar {
             const char* filename;
         };
         ExceptionData _exceptionData;
-        public:
-            // Inheriting constructors from the base class
-            using exception::exception;
-            explicit OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
-                : _exceptionData{commit_count_str, commit_sha_str, line, filename}, exception(_exceptionData) {}
-            void initializeBaseClass() {
-                exception::commit_count_str = _commit_count_str;
-                exception::commit_sha_str = _commit_sha_str;
-                exception::line = _line;
-                exception::filename = _filename;
-            }
+    public:
+        // Inheriting constructors from the base class
+        using exception::exception;
+        explicit OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
+            : _exceptionData{commit_count_str, commit_sha_str, line, filename}, exception(_exceptionData) {}
     };
 
     // Custom exceptions for making it easy to catch
