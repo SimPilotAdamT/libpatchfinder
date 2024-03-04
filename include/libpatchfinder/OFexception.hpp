@@ -15,7 +15,8 @@ namespace tihmstar {
 
             // Constructor for OFexception
             //explicit OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename): tihmstar::exception(commit_count_str, commit_sha_str, line, filename){};
-            explicit OFexception(const char* message) : tihmstar::exception("", "", 0, ""), _message(message) {}
+            load_command_not_found(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename, int cmd)
+                : OFexception("Load command not found"), _cmd(cmd) {};
 
             const char* what() const noexcept override {
                 return _message.c_str();
