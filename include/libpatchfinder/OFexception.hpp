@@ -9,6 +9,8 @@ namespace tihmstar {
     public:
         // Inheriting constructors from the base class
         using exception::exception;
+        OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
+            : tihmstar::exception(commit_count_str, commit_sha_str, line, filename) {}
     };
 
     // Custom exceptions for making it easy to catch
