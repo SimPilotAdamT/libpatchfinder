@@ -15,7 +15,7 @@ namespace tihmstar {
         ExceptionData _exceptionData;
         public:
             // Inheriting constructors from the base class
-            using exception::exception;
+            //using exception::exception;
             OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
                 : _exceptionData{commit_count_str, commit_sha_str, line, filename}, exception(_exceptionData) {}
             void initializeBaseClass() {
