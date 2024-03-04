@@ -11,7 +11,8 @@ namespace tihmstar {
             using exception::exception;
 
             // Constructor for OFexception
-            explicit OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename): tihmstar::exception(commit_count_str, commit_sha_str, line, filename){};
+            //explicit OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename): tihmstar::exception(commit_count_str, commit_sha_str, line, filename){};
+            explicit OFexception(const char* message): tihmstar::exception("", "", 0, ""), _message(message) {};
     };
 
     // Custom exceptions for making it easy to catch
