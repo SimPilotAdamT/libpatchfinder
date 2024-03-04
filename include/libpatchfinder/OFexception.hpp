@@ -8,10 +8,7 @@ namespace tihmstar {
     class OFexception : public tihmstar::exception {
     public:
         // Inheriting constructors from the base class
-        //using exception::exception;
-        // Constructor with appropriate argument types
-        OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
-            : tihmstar::exception(commit_count_str, commit_sha_str, line, filename) {}
+        using exception::exception;
     };
 
     // Custom exceptions for making it easy to catch
