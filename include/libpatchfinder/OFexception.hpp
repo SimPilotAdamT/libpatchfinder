@@ -29,7 +29,7 @@ namespace tihmstar {
     class symbol_not_found : public OFexception{
         using OFexception::OFexception;
     };
-    
+
     class load_command_not_found : public OFexception {
         int _cmd;
 
