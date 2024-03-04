@@ -6,15 +6,18 @@
 
 namespace tihmstar {
     class OFexception : public tihmstar::exception {
-        const char* _commit_count_str;
-        const char* _commit_sha_str;
-        int _line;
-        const char* _filename;
+        struct ExceptionData {
+            const char* commit_count_str;
+            const char* commit_sha_str;
+            int line;
+            const char* filename;
+        };
+        ExceptionData _exceptionData;
         public:
             // Inheriting constructors from the base class
             using exception::exception;
             OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
-                : _commit_count_str(commit_count_str), _commit_sha_str(commit_sha_str), _line(line), _filename(filename) {}
+                : _exceptionData{commit_count_str, commit_sha_str, line, filename}, exception(_exceptionData) {}
             void initializeBaseClass() {
                 exception::commit_count_str = _commit_count_str;
                 exception::commit_sha_str = _commit_sha_str;
