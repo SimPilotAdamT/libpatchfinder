@@ -247,7 +247,7 @@ std::vector<patch> ibootpatchfinder64_base::get_boot_arg_patch(const char *boota
         debug("Relocating boot-args string...\n");
 
         /* Find the "Reliance on this cert..." string. */
-        retassure(cert_str_loc = _vmem->memstr(CERT_STR), "Unable to find \"%s\" string!\n", "CERT_STR");
+        retassure(cert_str_loc = _vmem->memstr(CERT_STR), "Unable to find \"%s\" string!\n");
 
         debug("\"%s\" string found at 0x%016llx\n", CERT_STR, cert_str_loc);
 
