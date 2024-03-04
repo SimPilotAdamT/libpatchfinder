@@ -862,7 +862,7 @@ std::vector<patch> ibootpatchfinder64_base::get_no_force_dfu_patch(){
             pushINSN(insn::new_general_nop(insn));
             break;
         }else{
-            reterror("unexpected insn");
+            throw OFexception("unexpected insn");
         }
     }
 
