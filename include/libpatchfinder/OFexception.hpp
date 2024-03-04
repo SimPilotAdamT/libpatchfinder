@@ -3,16 +3,23 @@
 
 #include <libgeneral/macros.h>
 #include <libgeneral/exception.hpp>
+#include <string>
 
 namespace tihmstar {
     class OFexception : public tihmstar::exception {
+        private:
+            std::string _message;
         public:
             // Inheriting constructors from the base class
             using exception::exception;
 
             // Constructor for OFexception
             //explicit OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename): tihmstar::exception(commit_count_str, commit_sha_str, line, filename){};
-            explicit OFexception(const char* message): tihmstar::exception("", "", 0, ""), _message(message) {};
+            explicit OFexception(const char* message) : tihmstar::exception("", "", 0, ""), _message(message) {}
+
+            const char* what() const noexcept override {
+                return _message.c_str();
+            }
     };
 
     // Custom exceptions for making it easy to catch
