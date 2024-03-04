@@ -196,7 +196,7 @@ uint32_t ibootpatchfinder64_iOS13::get_el1_pagesize(){
         char errmsg[256]; \
         snprintf(errmsg, sizeof(errmsg), format, ##__VA_ARGS__); \
         throw tihmstar::load_command_not_found(__FILE__, __func__, __LINE__, errmsg, TG0);
-    } while(0)
+    } while(0);
     
     switch (TG0) {
         case 0b00:
