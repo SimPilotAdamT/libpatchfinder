@@ -6,11 +6,21 @@
 
 namespace tihmstar {
     class OFexception : public tihmstar::exception {
-    public:
-        // Inheriting constructors from the base class
-        using exception::exception;
-        OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
-            : tihmstar::exception(commit_count_str, commit_sha_str, line, filename) {}
+        const char* _commit_count_str;
+        const char* _commit_sha_str;
+        int _line;
+        const char* _filename;
+        public:
+            // Inheriting constructors from the base class
+            using exception::exception;
+            OFexception(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename)
+                : _commit_count_str(commit_count_str), _commit_sha_str(commit_sha_str), _line(line), _filename(filename) {}
+            void initializeBaseClass() {
+                exception::commit_count_str = _commit_count_str;
+                exception::commit_sha_str = _commit_sha_str;
+                exception::line = _line;
+                exception::filename = _filename;
+            }
     };
 
     // Custom exceptions for making it easy to catch
@@ -34,7 +44,10 @@ namespace tihmstar {
 
         // Constructor for load_command_not_found
         load_command_not_found(const char* commit_count_str, const char* commit_sha_str, int line, const char* filename, int cmd)
-            : OFexception(commit_count_str, commit_sha_str, line, filename), _cmd(cmd) {}
+            : OFexception(commit_count_str, commit_sha_str, line, filename), _cmd(cmd) {
+            initializeBaseClass();
+}
+
     };
 
     class symtab_not_found : public OFexception {
